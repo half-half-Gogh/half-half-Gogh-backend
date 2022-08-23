@@ -2,27 +2,27 @@ const { getAuth, UserRecord } = require("firebase-admin/auth");
 const admin = require("../../../Configuration/firebaseAuthConfig");
 const db = admin.firestore();
 
-//회원가입
-exports.signIn = (req, res) => {
-  console.log("Signin reqest Received");
+//로그인
+exports.logIn = (req, res) => {
+  console.log("Login reqest Received");
 
   getAuth()
-    .createUser({
-      uid: req.body.password,
-      email: req.body.id,
-      //displayName: req.body.username,
-    })
-    .then((userRecord) => {
-      console.log("Successfully created new user:", userRecord.uid);
-      db.collection("users").doc(req.body.id).set({
-        id: req.body.id,
-        username: req.body.username,
+    .getUsers([{ uid: req.body.password }, { email: req.body.id }])
+    .then((getUsersResult) => {
+      console.log("Successfully fetched user data:");
+      getUsersResult.users.forEach((userRecord) => {
+        console.log(userRecord);
+
+        res.send("Successfully Logined");
       });
-      res.send("Sign-In Completed");
+
+      console.log("Unable to find users corresponding to these identifiers:");
+      getUsersResult.notFound.forEach((userIdentifier) => {
+        console.log(userIdentifier);
+        res.send("Unable to find users"); //case 나눠야함 - id. password
+      });
     })
     .catch((error) => {
-      console.log("Error creating new user:", error);
-      const Error = toString(error);
-      res.send("Error creating new user:" + Error);
+      console.log("Error fetching user data:", error);
     });
 };

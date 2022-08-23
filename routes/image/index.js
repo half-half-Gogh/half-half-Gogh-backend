@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const imgController = require("../../controller/imgController");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -20,4 +19,9 @@ router.post("/upload", upload.single("hello"), (req, res) => {
   console.log(req.file);
 });
 
+router.get("/fuck", (req, res) => {
+  res.json("fuck");
+});
+
 module.exports = router;
+//img
