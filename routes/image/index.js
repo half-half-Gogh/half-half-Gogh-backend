@@ -19,9 +19,5 @@ router.post("/upload", upload.single("hello"), (req, res) => {
   console.log(req.file);
 });
 
-router.get("/fuck", (req, res) => {
-  res.json("fuck");
-});
-
 module.exports = router;
 //img
