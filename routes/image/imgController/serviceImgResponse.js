@@ -1,0 +1,1 @@
+exports.imgResponse = (req, res) => {};

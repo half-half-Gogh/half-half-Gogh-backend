@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const imgService = require("./imgController/serviceImgInfo");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/images/"); // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
+    cb(null, `public/images/`); // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname); // cb 콜백함수를 통해 전송된 파일 이름 설정
@@ -14,10 +15,12 @@ const storage = multer.diskStorage({
 upload = multer({ storage: storage });
 
 router.post("/upload", upload.single("hello"), (req, res) => {
-  console.log("got image");
+  console.log(req.file.fieldname);
   const fileName = req.file.filename;
-  console.log(req.file);
+
+  res.json({ fileName: fileName });
 });
 
+router.post("/imgInfo", imgService.getImgInfo);
+
 module.exports = router;
-//img
