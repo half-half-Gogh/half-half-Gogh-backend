@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use(express.static("public"));
+app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
   res.send("home");

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const imgService = require("./imgController/serviceImgInfo");
+const imgSet = require("./imgController/serviceImgResponse");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -14,7 +15,7 @@ const storage = multer.diskStorage({
 
 upload = multer({ storage: storage });
 
-router.post("/upload", upload.single("hello"), (req, res) => {
+router.post("/upload", upload.single("halfhalfgogh"), (req, res) => {
   console.log(req.file.fieldname);
   const fileName = req.file.filename;
 
@@ -22,5 +23,7 @@ router.post("/upload", upload.single("hello"), (req, res) => {
 });
 
 router.post("/imgInfo", imgService.getImgInfo);
+
+router.post("/imgResponse", imgSet.imgResponse);
 
 module.exports = router;

@@ -5,7 +5,7 @@ exports.getImgInfo = async (req, res) => {
   const galleryName = req.body.galleryName;
   const drawer = req.body.drawer;
   const imgId = req.body.imgId;
-  const imgPath = `publicd/images/${imgId}`;
+  const imgPath = `public/images/${imgId}`;
   db.collection(galleryName)
     .doc(imgId)
     .set({
