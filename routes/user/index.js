@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const userController = require("./userController/serviceSignin");
-const userController2 = require("./userController/serviceLogin");
+const userSignup = require("../user/userController/serviceSignup");
+const userSignin = require("../user/userController/serviceSignin");
+const userGet = require("../user/userController/getUserName");
 
-router.post("/signin", userController.signIn);
-router.post("/login", userController2.logIn);
+router.post("/signup", userSignup.userSignup);
+router.post("/signin", userSignin.userSignin);
+router.post("/getusername", userGet.getUsername);
 
 module.exports = router;

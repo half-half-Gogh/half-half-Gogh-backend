@@ -1,3 +1,5 @@
+const ArrayList = require("arraylist");
+const { json } = require("express");
 const admin = require("../../../Configuration/firebaseAuthConfig");
 const db = admin.firestore();
 
@@ -8,8 +10,16 @@ exports.imgResponse = async (req, res) => {
   const snapshot = await idRef.get();
   const pResult = [];
   snapshot.forEach((doc) => {
-    console.log(doc.data().imgPath);
-    pResult.push(doc.data().imgPath);
+    const like = doc.data().like.toString().split(",");
+    const ch = JSON.stringify(like);
+    pResult.push(
+      JSON.parse(
+        `{"src": "${doc.data().imgPath}", "drawer": "${
+          doc.data().drawer
+        }", "like": ${ch}"}`
+      )
+    );
   });
+  console.log("sended data");
   res.json({ pResult });
 };

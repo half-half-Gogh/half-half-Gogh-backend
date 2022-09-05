@@ -1,28 +1,30 @@
-const { getAuth, UserRecord } = require("firebase-admin/auth");
-const admin = require("../../../Configuration/firebaseAuthConfig");
-const db = admin.firestore();
+require("../../../Configuration/firebaseAuthConfig");
+const { response } = require("express");
+const firebase = require("firebase");
+const {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  getAuth,
+} = require("firebase/auth");
+require("firebase/auth");
+require("firebase/firestore");
+const admin = require("firebase-admin");
 
-//회원가입
-exports.signIn = (req, res) => {
-  console.log("Signin reqest Received");
+auth = getAuth;
 
-  getAuth()
-    .createUser({
-      uid: req.body.password,
-      email: req.body.id,
-      //displayName: req.body.username,
-    })
-    .then((userRecord) => {
-      console.log("Successfully created new user:", userRecord.uid);
-      db.collection("users").doc(req.body.id).set({
-        id: req.body.id,
-        username: req.body.username,
-      });
-      res.send("Sign-In Completed");
+exports.userSignin = (req, res) => {
+  console.log("login test reqest Received");
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(req.body.id, req.body.password)
+    .then(() => {
+      console.log("로그인 완료: ", req.body.id);
+      res.send("로그인 완료");
     })
     .catch((error) => {
-      console.log("Error creating new user:", error);
-      const Error = toString(error);
-      res.send("Error creating new user:" + Error);
+      console.log("로그인 에러: ", error);
+      res.send("로그인 실패 error: " + error.message);
+      //res.json({message: error});
     });
 };
