@@ -16,7 +16,7 @@ exports.imgResponse = async (req, res) => {
       JSON.parse(
         `{"src": "${doc.data().imgPath}", "drawer": "${
           doc.data().drawer
-        }", "like": ${ch}"}`
+        }", "like": ${ch}}`
       )
     );
   });
