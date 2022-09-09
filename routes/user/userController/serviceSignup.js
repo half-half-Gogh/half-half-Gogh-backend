@@ -11,23 +11,23 @@ auth = getAuth;
 const db = admin.firestore();
 
 exports.userSignup = (req, res) => {
-  console.log("Signup test reqest Received");
+  console.log("Signup reqest Received");
 
   firebase
     .auth()
     .createUserWithEmailAndPassword(req.body.id, req.body.password)
     .then(() => {
-      console.log("새 유저 생성 완료:", req.body.id);
+      console.log("Signup Completed:", req.body.id);
+
       db.collection("users").doc(req.body.id).set({
         id: req.body.id,
         username: req.body.username,
       });
-      console.log("회원가입 완료");
-      res.send("회원가입 완료");
+
+      res.json({ signupStatus: true, signupUseid: req.body.id });
     })
     .catch((error) => {
-      console.log("Error creating new user:", error);
-      res.send("회원가입 실패 error:" + error.message);
-      //res.json({message: error});
+      console.log("Signup Error: ", error);
+      res.json({ signupStatus: false, signupError: error.message });
     });
 };

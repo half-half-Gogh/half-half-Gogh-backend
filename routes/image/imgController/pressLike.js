@@ -1,19 +1,19 @@
 const admin = require("../../../Configuration/firebaseAuthConfig");
 const db = admin.firestore();
 
-exports.getImgInfo = async (req, res) => {
+exports.pressLike = (req, res) => {
   const galleryName = req.body.galleryName;
-  const drawer = req.body.drawer;
   const imgId = req.body.imgId;
-  const imgPath = `${imgId}`;
+  const liker = req.body.liker;
+  console.log("press On");
   db.collection(galleryName)
     .doc(imgId)
-    .set({
-      drawer: drawer,
-      imgPath: imgPath,
+    .add({
+      // error!!!
+      like: liker,
     })
     .then(() => {
-      console.log(`${[imgPath]} image saved on database`);
+      console.log(`${liker} liker saved on database`);
     })
     .catch((err) => {
       console.log(err);
