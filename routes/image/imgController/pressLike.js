@@ -11,6 +11,12 @@ exports.pressLike = async (req, res) => {
 
   const updatedLike = snapshot.data().like;
 
-  updatedLike.push(liker);
-  idRef.update({ like: updatedLike });
+  const check = updatedLike.indexOf(liker);
+  if (check != -1) {
+    updatedLike.push(liker);
+    idRef.update({ like: updatedLike });
+  } else {
+    updatedLike.splice(check, 1);
+    idRef.update({ like: updatedLike });
+  }
 };
