@@ -24,7 +24,7 @@ exports.userSignup = (req, res) => {
         username: req.body.username,
       });
 
-      res.json({ signupStatus: true, signupUseid: req.body.id });
+      res.json({ signupStatus: true, signupUserId: req.body.id });
     })
     .catch((error) => {
       console.log("Signup Error: ", error);

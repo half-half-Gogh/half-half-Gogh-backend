@@ -5,12 +5,14 @@ exports.getImgInfo = async (req, res) => {
   const galleryName = req.body.galleryName;
   const drawer = req.body.drawer;
   const imgId = req.body.imgId;
+  const emptyArr = [];
   const imgPath = `${imgId}`;
   db.collection(galleryName)
     .doc(imgId)
     .set({
       drawer: drawer,
       imgPath: imgPath,
+      like: emptyArr,
     })
     .then(() => {
       console.log(`${[imgPath]} image saved on database`);

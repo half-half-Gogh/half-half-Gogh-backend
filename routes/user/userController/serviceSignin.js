@@ -10,6 +10,8 @@ require("firebase/auth");
 require("firebase/firestore");
 const admin = require("firebase-admin");
 
+const db = admin.firestore();
+
 auth = getAuth;
 
 exports.userSignin = (req, res) => {
@@ -28,14 +30,13 @@ exports.userSignin = (req, res) => {
         .then((snapshot) => {
           snapshot.forEach((doc) => {
             console.log(doc.id, "=>", doc.data());
+            res.json({
+              signinStatus: true,
+              signinUserId: req.body.id,
+              signinUserName: doc.data().username,
+            });
           });
         });
-
-      res.json({
-        signinStatus: true,
-        signinUseid: req.body.id,
-        signinUserName: doc.data().username,
-      });
     })
     .catch((error) => {
       console.log("Signin Error: ", error);

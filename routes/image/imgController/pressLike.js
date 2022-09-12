@@ -12,11 +12,15 @@ exports.pressLike = async (req, res) => {
   const updatedLike = snapshot.data().like;
 
   const check = updatedLike.indexOf(liker);
-  if (check != -1) {
+  if (check == -1) {
+    console.log(`${check} : like updated!!`);
     updatedLike.push(liker);
+    console.log(updatedLike);
     idRef.update({ like: updatedLike });
   } else {
+    console.log(`${check} : like canceled`);
     updatedLike.splice(check, 1);
+    console.log(updatedLike);
     idRef.update({ like: updatedLike });
   }
 };
