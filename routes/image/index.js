@@ -4,6 +4,7 @@ const multer = require("multer");
 const imgService = require("./imgController/serviceImgInfo");
 const imgSet = require("./imgController/serviceImgResponse");
 const pressLike = require("./imgController/pressLike");
+const responseName = require("./imgController/responseNickName");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -28,5 +29,7 @@ router.post("/imgInfo", imgService.getImgInfo);
 router.post("/imgResponse", imgSet.imgResponse);
 
 router.post("/pressLike", pressLike.pressLike);
+
+router.post("/responseUserName", responseName.responseNickName);
 
 module.exports = router;

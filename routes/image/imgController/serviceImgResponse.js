@@ -4,8 +4,8 @@ const admin = require("../../../Configuration/firebaseAuthConfig");
 const db = admin.firestore();
 
 exports.imgResponse = async (req, res) => {
-  const galleryName = req.body.galleryName;
-  const idRef = db.collection(galleryName);
+  const loginUserId = req.body.loginUserId;
+  const idRef = db.collection(loginUserId);
 
   const snapshot = await idRef.get();
   const pResult = [];

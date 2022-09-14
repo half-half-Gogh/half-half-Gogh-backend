@@ -2,11 +2,11 @@ const admin = require("../../../Configuration/firebaseAuthConfig");
 const db = admin.firestore();
 
 exports.pressLike = async (req, res) => {
-  const galleryName = req.body.galleryName;
+  const loginUserId = req.body.loginUserId;
   const imgId = req.body.imgId;
   const liker = req.body.liker;
 
-  const idRef = db.collection(galleryName).doc(imgId);
+  const idRef = db.collection(loginUserId).doc(imgId);
   const snapshot = await idRef.get();
 
   const updatedLike = snapshot.data().like;

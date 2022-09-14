@@ -2,12 +2,12 @@ const admin = require("../../../Configuration/firebaseAuthConfig");
 const db = admin.firestore();
 
 exports.getImgInfo = async (req, res) => {
-  const galleryName = req.body.galleryName;
+  const loginUserId = req.body.loginUserId;
   const drawer = req.body.drawer;
   const imgId = req.body.imgId;
   const emptyArr = [];
   const imgPath = `${imgId}`;
-  db.collection(galleryName)
+  db.collection(loginUserId)
     .doc(imgId)
     .set({
       drawer: drawer,
