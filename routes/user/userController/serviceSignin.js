@@ -15,32 +15,36 @@ const db = admin.firestore();
 auth = getAuth;
 
 exports.userSignin = (req, res) => {
-  console.log("Signin reqest Received");
+  try {
+    console.log("Signin reqest Received");
 
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(req.body.id, req.body.password)
-    .then(() => {
-      console.log("Signin Completed: ", req.body.id);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(req.body.id, req.body.password)
+      .then(() => {
+        console.log("Signin Completed: ", req.body.id);
 
-      const usernameRef = db.collection("users");
-      const snapshot = usernameRef
-        .where("id", "==", req.body.id)
-        .get()
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            console.log(doc.id, "=>", doc.data());
-            res.json({
-              signinStatus: true,
-              signinUserId: req.body.id,
-              signinUserName: doc.data().username,
-              loginToken: doc.data().loginToken,
+        const usernameRef = db.collection("users");
+        const snapshot = usernameRef
+          .where("id", "==", req.body.id)
+          .get()
+          .then((snapshot) => {
+            snapshot.forEach((doc) => {
+              console.log(doc.id, "=>", doc.data());
+              res.json({
+                signinStatus: true,
+                signinUserId: req.body.id,
+                signinUserName: doc.data().username,
+                loginToken: doc.data().loginToken,
+              });
             });
           });
-        });
-    })
-    .catch((error) => {
-      console.log("Signin Error: ", error);
-      res.json({ signinStatus: false, signinError: error.message });
-    });
+      })
+      .catch((error) => {
+        console.log("Signin Error: ", error);
+        res.json({ signinStatus: false, signinError: error.message });
+      });
+  } catch (err) {
+    console.log(err);
+  }
 };
