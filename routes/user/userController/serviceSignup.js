@@ -13,7 +13,7 @@ const db = admin.firestore();
 
 exports.userSignup = (req, res) => {
   console.log("Signup reqest Received");
-  const loginToken = token.randomToken(6);
+  const loginToken = token(6);
   firebase
     .auth()
     .createUserWithEmailAndPassword(req.body.id, req.body.password)
