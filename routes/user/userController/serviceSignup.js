@@ -5,6 +5,7 @@ const { createUserWithEmailAndPassword, getAuth } = require("firebase/auth");
 require("firebase/auth");
 require("firebase/firestore");
 const admin = require("firebase-admin");
+const token = require("random-token");
 
 auth = getAuth;
 
@@ -12,7 +13,7 @@ const db = admin.firestore();
 
 exports.userSignup = (req, res) => {
   console.log("Signup reqest Received");
-
+  const loginToken = token.randomToken(6);
   firebase
     .auth()
     .createUserWithEmailAndPassword(req.body.id, req.body.password)
@@ -22,9 +23,12 @@ exports.userSignup = (req, res) => {
       db.collection("users").doc(req.body.id).set({
         id: req.body.id,
         username: req.body.username,
+        loginToken: loginToken,
       });
-
-      res.json({ signupStatus: true, signupUserId: req.body.id });
+      res.json({
+        signupStatus: true,
+        signupUserId: req.body.id,
+      });
     })
     .catch((error) => {
       console.log("Signup Error: ", error);

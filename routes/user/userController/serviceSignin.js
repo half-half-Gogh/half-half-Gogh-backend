@@ -34,6 +34,7 @@ exports.userSignin = (req, res) => {
               signinStatus: true,
               signinUserId: req.body.id,
               signinUserName: doc.data().username,
+              loginToken: doc.data().loginToken,
             });
           });
         });
