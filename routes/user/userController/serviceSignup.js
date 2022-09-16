@@ -20,7 +20,7 @@ exports.userSignup = (req, res) => {
     .then(() => {
       console.log("Signup Completed:", req.body.id);
 
-      db.collection("users").doc(req.body.id).set({
+      db.collection("users").doc(loginToken).set({
         id: req.body.id,
         username: req.body.username,
         loginToken: loginToken,
