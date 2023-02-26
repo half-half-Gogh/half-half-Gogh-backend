@@ -23,6 +23,10 @@
   <br>
 </div>
 
+## 👾 구성도
+<div align=center>
+<img src="https://user-images.githubusercontent.com/26276051/221411554-9ce9139f-8627-4aa2-9dbe-6223e57f0e78.png">
+</div>
 
   
 ## 🍩 주요기능 및 페이지 소개
