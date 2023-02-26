@@ -28,6 +28,12 @@
 <img src="https://user-images.githubusercontent.com/26276051/221411554-9ce9139f-8627-4aa2-9dbe-6223e57f0e78.png">
 </div>
 
+### 설명
+- 서버 | Nodejs- Express web server
+- 배포 | AWS ec2
+- 사용자 회원가입/로그인 | Firebase Authentication
+- 사용자 - 미술관 정보 | Firebase Firestore database (NoSQL 기반)
+- 이미지 파일 저장 | Server local repository
   
 ## 🍩 주요기능 및 페이지 소개
 
