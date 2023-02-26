@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const imgService = require("./imgController/serviceImgInfo");
-const imgSet = require("./imgController/serviceImgResponse");
-const pressLike = require("./imgController/pressLike");
-const responseName = require("./imgController/responseNickName");
+const imgService = require("./service/serviceImgInfo");
+const imgSet = require("./service/serviceImgResponse");
+const pressLike = require("./service/pressLike");
+const responseName = require("./service/responseNickName");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
