@@ -15,8 +15,8 @@
 
 
 <div align=center> 
-<img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=next.js&logoColor=white">
-<img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=react&logoColor=white">
+<img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=white">
+<img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
 <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/vercel-FFE033?style=for-the-badge&logo=vercel&logoColor=white">
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
